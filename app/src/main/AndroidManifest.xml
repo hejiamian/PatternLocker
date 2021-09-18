@@ -12,22 +12,42 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.def.DefaultPatternSettingActivity" />
-        <activity android:name=".ui.def.DefaultPatternCheckingActivity" />
-        <activity android:name=".ui.def.DefaultStyleActivity" />
-        <activity android:name=".ui.simple.SimpleStyleActivity" />
-        <activity android:name=".ui.simple.SimplePatternSettingActivity" />
-        <activity android:name=".ui.simple.SimplePatternCheckingActivity" />
-        <activity android:name=".ui.whole.WholeStyleActivity" />
-        <activity android:name=".ui.whole.WholePatternSettingActivity" />
-        <activity android:name=".ui.whole.WholePatternCheckingActivity" />
+        <activity
+            android:name=".ui.def.DefaultPatternSettingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.def.DefaultPatternCheckingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.def.DefaultStyleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.simple.SimpleStyleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.simple.SimplePatternSettingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.simple.SimplePatternCheckingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.whole.WholeStyleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.whole.WholePatternSettingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.whole.WholePatternCheckingActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

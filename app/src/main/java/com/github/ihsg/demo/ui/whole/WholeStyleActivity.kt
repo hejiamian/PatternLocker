@@ -3,18 +3,23 @@ package com.github.ihsg.demo.ui.whole
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.github.ihsg.demo.R
-import kotlinx.android.synthetic.main.activity_simple_style.*
+import com.github.ihsg.base.BaseActivity
+import com.github.ihsg.demo.databinding.ActivityWholeStyleBinding
 
-class WholeStyleActivity : AppCompatActivity() {
+class WholeStyleActivity : BaseActivity<ActivityWholeStyleBinding>() {
+    override fun getViewBinding(): ActivityWholeStyleBinding {
+        return ActivityWholeStyleBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_whole_style)
 
-        btnSetting.setOnClickListener { WholePatternSettingActivity.startAction(this@WholeStyleActivity) }
-        btnChecking.setOnClickListener { WholePatternCheckingActivity.startAction(this@WholeStyleActivity) }
+        binding.btnSetting.setOnClickListener {
+            WholePatternSettingActivity.startAction(this@WholeStyleActivity)
+        }
+        binding.btnChecking.setOnClickListener {
+            WholePatternCheckingActivity.startAction(this@WholeStyleActivity)
+        }
     }
 
     companion object {

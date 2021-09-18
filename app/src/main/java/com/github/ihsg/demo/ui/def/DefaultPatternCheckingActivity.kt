@@ -3,26 +3,27 @@ package com.github.ihsg.demo.ui.def
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-
+import com.github.ihsg.base.BaseActivity
 import com.github.ihsg.demo.R
+import com.github.ihsg.demo.databinding.ActivityDefaultPatternCheckingBinding
 import com.github.ihsg.demo.util.PatternHelper
 import com.github.ihsg.patternlocker.OnPatternChangeListener
 import com.github.ihsg.patternlocker.PatternLockerView
-import kotlinx.android.synthetic.main.activity_default_pattern_checking.*
 
 
-class DefaultPatternCheckingActivity : AppCompatActivity() {
+class DefaultPatternCheckingActivity : BaseActivity<ActivityDefaultPatternCheckingBinding>() {
     private var patternHelper: PatternHelper? = null
+
+    override fun getViewBinding(): ActivityDefaultPatternCheckingBinding {
+        return ActivityDefaultPatternCheckingBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_default_pattern_checking)
-
-        patternLockerView.linkedLineView = null
-        patternLockerView.hitCellView = null
-        patternLockerView.setOnPatternChangedListener(object : OnPatternChangeListener {
+        binding.patternLockerView.linkedLineView = null
+        binding.patternLockerView.hitCellView = null
+        binding.patternLockerView.setOnPatternChangedListener(object : OnPatternChangeListener {
             override fun onStart(view: PatternLockerView) {}
 
             override fun onChange(view: PatternLockerView, hitIndexList: List<Int>) {}
@@ -30,7 +31,7 @@ class DefaultPatternCheckingActivity : AppCompatActivity() {
             override fun onComplete(view: PatternLockerView, hitIndexList: List<Int>) {
                 val isError = !isPatternOk(hitIndexList)
                 view.updateStatus(isError)
-                patternIndicatorView.updateState(hitIndexList, isError)
+                binding.patternIndicatorView.updateState(hitIndexList, isError)
                 updateMsg()
             }
 
@@ -39,7 +40,7 @@ class DefaultPatternCheckingActivity : AppCompatActivity() {
             }
         })
 
-        this.textMsg.text = "绘制解锁图案"
+        binding.textMsg.text = "绘制解锁图案"
         this.patternHelper = PatternHelper()
     }
 
@@ -49,8 +50,8 @@ class DefaultPatternCheckingActivity : AppCompatActivity() {
     }
 
     private fun updateMsg() {
-        this.textMsg.text = this.patternHelper!!.message
-        this.textMsg.setTextColor(if (this.patternHelper!!.isOk)
+        binding.textMsg.text = this.patternHelper!!.message
+        binding.textMsg.setTextColor(if (this.patternHelper!!.isOk)
             ContextCompat.getColor(this, R.color.colorPrimary)
         else
             ContextCompat.getColor(this, R.color.colorAccent))

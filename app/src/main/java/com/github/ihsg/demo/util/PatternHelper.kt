@@ -2,7 +2,6 @@ package com.github.ihsg.demo.util
 
 import android.text.TextUtils
 import com.github.ihsg.demo.util.SecurityUtil.encrypt
-import com.github.ihsg.demo.util.SharedPreferencesUtil.Companion.instance
 
 /**
  * Created by hsg on 14/10/2017.
@@ -81,11 +80,10 @@ open class PatternHelper {
 
     private fun saveToStorage(gesturePwd: String?) {
         val encryptPwd = encrypt(gesturePwd!!)
-        instance!!.saveString(GESTURE_PWD_KEY, encryptPwd)
+        SharedPreferencesUtil.saveString(GESTURE_PWD_KEY, encryptPwd)
     }
 
-    private val fromStorage: String? = instance?.getString(GESTURE_PWD_KEY)?.let { SecurityUtil.decrypt(it) }
-
+    private val fromStorage: String? = SharedPreferencesUtil.getString(GESTURE_PWD_KEY)?.let { SecurityUtil.decrypt(it) }
 
     companion object {
         const val MAX_SIZE = 4

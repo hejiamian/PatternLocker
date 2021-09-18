@@ -1,21 +1,30 @@
 package com.github.ihsg.demo.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.github.ihsg.demo.R
+import com.github.ihsg.base.BaseActivity
+import com.github.ihsg.demo.databinding.ActivityMainBinding
 import com.github.ihsg.demo.ui.def.DefaultStyleActivity
 import com.github.ihsg.demo.ui.simple.SimpleStyleActivity
 import com.github.ihsg.demo.ui.whole.WholeStyleActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding.btnDefault.setOnClickListener {
+            DefaultStyleActivity.startAction(this@MainActivity)
+        }
 
-        btnDefault.setOnClickListener { DefaultStyleActivity.startAction(this@MainActivity) }
-        btnSimple.setOnClickListener { SimpleStyleActivity.startAction(this@MainActivity) }
-        btnWhole.setOnClickListener { WholeStyleActivity.startAction(this@MainActivity) }
+        binding.btnSimple.setOnClickListener {
+            SimpleStyleActivity.startAction(this@MainActivity)
+        }
+
+        binding.btnWhole.setOnClickListener {
+            WholeStyleActivity.startAction(this@MainActivity)
+        }
     }
 }

@@ -3,19 +3,25 @@ package com.github.ihsg.demo.ui.simple
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.github.ihsg.demo.R
-import kotlinx.android.synthetic.main.activity_simple_style.*
+import com.github.ihsg.base.BaseActivity
+import com.github.ihsg.demo.databinding.ActivitySimpleStyleBinding
 
-class SimpleStyleActivity : AppCompatActivity() {
+class SimpleStyleActivity : BaseActivity<ActivitySimpleStyleBinding>() {
+
+    override fun getViewBinding(): ActivitySimpleStyleBinding {
+        return ActivitySimpleStyleBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_simple_style)
 
-        btnSetting.setOnClickListener { SimplePatternSettingActivity.startAction(this@SimpleStyleActivity) }
+        binding.btnSetting.setOnClickListener {
+            SimplePatternSettingActivity.startAction(this@SimpleStyleActivity)
+        }
 
-        btnChecking.setOnClickListener { SimplePatternCheckingActivity.startAction(this@SimpleStyleActivity) }
+        binding.btnChecking.setOnClickListener {
+            SimplePatternCheckingActivity.startAction(this@SimpleStyleActivity)
+        }
     }
 
     companion object {
